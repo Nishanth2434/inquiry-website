@@ -1,0 +1,438 @@
+import React, { useEffect, useState } from 'react';
+import { motion, useAnimation, useInView, type Variants } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { 
+  ArrowRight, CheckCircle2, Award, HardHat, TrendingUp, ShieldCheck, 
+  MapPin, Clock, Settings, ChevronRight, Star, Quote
+} from 'lucide-react';
+import { Button } from '../components/ui/Button';
+import { Card, CardContent } from '../components/ui/Card';
+import { Badge } from '../components/ui/Badge';
+
+// Asset Imports
+import heroBg from '../assets/images/hero/hero_asphalt.jpg';
+import aboutImg from '../assets/images/about/about_team.jpg';
+import projectHighway from '../assets/images/projects/project_highway.jpg';
+import projectDowntown from '../assets/images/projects/project_downtown.jpg';
+import servicePaving from '../assets/images/services/service_paving.jpg';
+import serviceConst from '../assets/images/services/service_construction.jpg';
+import eqPaver from '../assets/images/equipment/eq_paver.jpg';
+import eqRoller from '../assets/images/equipment/eq_roller.jpg';
+import ctaBg from '../assets/images/hero/cta_bg.jpg';
+
+// Reusable Animation Variants
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } }
+};
+
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
+};
+
+// Animated Counter Component
+const AnimatedCounter = ({ end, suffix = "", title }: { end: number, suffix?: string, title: string }) => {
+  const [count, setCount] = useState(0);
+  const ref = React.useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  useEffect(() => {
+    if (isInView) {
+      let start = 0;
+      const duration = 2000;
+      const increment = end / (duration / 16);
+      const timer = setInterval(() => {
+        start += increment;
+        if (start >= end) {
+          setCount(end);
+          clearInterval(timer);
+        } else {
+          setCount(Math.floor(start));
+        }
+      }, 16);
+      return () => clearInterval(timer);
+    }
+  }, [isInView, end]);
+
+  return (
+    <div ref={ref} className="text-center p-6 bg-white rounded-2xl shadow-sm border border-brand-100">
+      <div className="text-5xl md:text-6xl font-bold text-brand-600 mb-2">
+        {count}{suffix}
+      </div>
+      <div className="text-brand-900 font-medium text-lg">{title}</div>
+    </div>
+  );
+};
+
+export const Home = () => {
+  return (
+    <div className="flex flex-col min-h-screen bg-white overflow-x-hidden">
+      
+      {/* SECTION 1 - HERO */}
+      <section className="relative min-h-[95vh] flex items-center bg-brand-950 overflow-hidden pt-20">
+        <div className="absolute inset-0 z-0">
+          <img src={heroBg} alt="Building Roads" className="w-full h-full object-cover opacity-40 scale-105" />
+          <div className="absolute inset-0 bg-gradient-to-r from-brand-950 via-brand-950/80 to-transparent" />
+          {/* Engineering Grid Overlay */}
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDEwIEwgNDAgMTAgTSAxMCAwIEwgMTAgNDAgTSAwIDIwIEwgNDAgMjAgTSAyMCAwIEwgMjAgNDAgTSAwIDMwIEwgNDAgMzAgTSAzMCAwIEwgMzAgNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-30" />
+        </div>
+        
+        <div className="container-custom relative z-10 w-full">
+          <div className="grid lg:grid-cols-12 gap-12 items-center">
+            <motion.div 
+              initial="hidden" animate="visible" variants={staggerContainer}
+              className="lg:col-span-8"
+            >
+              <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-900/50 border border-brand-700/50 backdrop-blur-sm mb-8">
+                <ShieldCheck className="w-5 h-5 text-brand-400" />
+                <span className="text-brand-100 text-sm font-medium tracking-wide">Trusted Infrastructure & Road Construction</span>
+              </motion.div>
+              
+              <motion.div variants={fadeInUp}>
+                <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-[1.1] tracking-tight">
+                  Building Roads.<br/>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-300 to-brand-500">Connecting Progress.</span>
+                </h1>
+              </motion.div>
+
+              <motion.div variants={fadeInUp}>
+                <p className="text-xl md:text-2xl text-brand-100 mb-10 max-w-2xl font-light leading-relaxed border-l-4 border-brand-500 pl-6">
+                  Delivering premium asphalt paving, structural road construction, and comprehensive infrastructure solutions engineered for durability.
+                </p>
+              </motion.div>
+              
+              <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-5">
+                <Link to="/projects">
+                  <Button size="lg" className="w-full sm:w-auto bg-brand-500 hover:bg-brand-400 text-white border-none text-lg px-8 h-14 rounded-none">
+                    Explore Our Projects
+                  </Button>
+                </Link>
+                <Link to="/contact">
+                  <Button variant="outline" size="lg" className="w-full sm:w-auto text-white border-brand-500/50 hover:bg-brand-900/50 backdrop-blur-sm text-lg px-8 h-14 rounded-none">
+                    Get a Quote
+                  </Button>
+                </Link>
+              </motion.div>
+            </motion.div>
+
+            {/* Floating Stats */}
+            <motion.div 
+              initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1, delay: 0.5 }}
+              className="hidden lg:block lg:col-span-4 relative h-[400px]"
+            >
+              <div className="absolute top-10 right-0 bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-2xl w-64 shadow-2xl">
+                <div className="text-4xl font-bold text-white mb-1">120+</div>
+                <div className="text-brand-200 text-sm font-medium uppercase tracking-wider">Active Projects</div>
+              </div>
+              <div className="absolute bottom-10 right-10 bg-brand-600/90 backdrop-blur-md p-6 rounded-2xl w-64 shadow-2xl">
+                <div className="text-4xl font-bold text-white mb-1">98%</div>
+                <div className="text-brand-100 text-sm font-medium uppercase tracking-wider">On-Time Delivery</div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 2 - COMPANY INTRODUCTION */}
+      <section className="section-padding bg-white relative z-20">
+        <div className="container-custom">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="relative">
+              <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
+                <img src={aboutImg} alt="Engineering Team" className="w-full h-full object-cover" />
+              </div>
+              <div className="absolute -bottom-8 -right-8 bg-brand-950 p-8 rounded-2xl shadow-xl hidden md:block">
+                <div className="flex items-center gap-4">
+                  <Award className="w-12 h-12 text-brand-400" />
+                  <div>
+                    <div className="text-3xl font-bold text-white">ISO 9001</div>
+                    <div className="text-brand-200 text-sm">Certified Quality</div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+            
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="lg:pl-8">
+              <motion.div variants={fadeInUp} className="mb-4">
+                <span className="text-brand-600 font-bold tracking-widest uppercase text-sm">Our Legacy</span>
+              </motion.div>
+              <motion.h2 variants={fadeInUp} className="text-4xl md:text-5xl font-bold text-brand-950 mb-8 leading-tight">
+                Engineering excellence in every mile we pave.
+              </motion.h2>
+              <motion.div variants={fadeInUp} className="space-y-6 text-lg text-brand-700/80 mb-10">
+                <p>
+                  Apex Infra stands at the forefront of modern infrastructure development. We specialize in heavy civil construction, delivering robust road networks that power economies.
+                </p>
+                <p>
+                  Our commitment to utilizing cutting-edge machinery and premium materials ensures that every project, from vast highways to intricate urban developments, is built to withstand the test of time and traffic.
+                </p>
+              </motion.div>
+              
+              <motion.div variants={fadeInUp} className="grid grid-cols-2 gap-6 mb-10">
+                {[
+                  { label: 'Years Experience', val: '15+' },
+                  { label: 'Projects Completed', val: '120+' },
+                  { label: 'Heavy Machines', val: '40+' },
+                  { label: 'Regions Served', val: 'Multiple' },
+                ].map((m, i) => (
+                  <div key={i} className="border-l-2 border-brand-500 pl-4">
+                    <div className="text-2xl font-bold text-brand-950">{m.val}</div>
+                    <div className="text-sm text-brand-600 font-medium">{m.label}</div>
+                  </div>
+                ))}
+              </motion.div>
+
+              <motion.div variants={fadeInUp}>
+                <Link to="/about">
+                  <Button className="rounded-none bg-brand-950 hover:bg-brand-800 text-white px-8 h-14">
+                    Learn More About Us <ArrowRight className="ml-2 w-5 h-5" />
+                  </Button>
+                </Link>
+              </motion.div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 3 - SERVICES */}
+      <section className="section-padding bg-brand-50">
+        <div className="container-custom">
+          <div className="text-center max-w-3xl mx-auto mb-20">
+            <span className="text-brand-600 font-bold tracking-widest uppercase text-sm mb-4 block">Core Capabilities</span>
+            <h2 className="text-4xl md:text-5xl font-bold text-brand-950 mb-6">Advanced Infrastructure Solutions</h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              { title: 'Road Construction', img: serviceConst, link: '/services/road-construction' },
+              { title: 'Asphalt Paving', img: servicePaving, link: '/services/asphalt-paving' },
+              { title: 'Road Maintenance', img: projectDowntown, link: '/services/road-maintenance' },
+              { title: 'Infrastructure', img: projectHighway, link: '/services/infrastructure' },
+              { title: 'Site Preparation', img: eqPaver, link: '/services' },
+              { title: 'Road Resurfacing', img: servicePaving, link: '/services' },
+            ].map((service, i) => (
+              <motion.div 
+                key={i}
+                initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}
+              >
+                <Link to={service.link} className="block group relative overflow-hidden rounded-2xl aspect-[4/3]">
+                  <img 
+                    src={service.img} 
+                    alt={service.title} 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-950/90 via-brand-950/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
+                  <div className="absolute inset-0 bg-brand-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  
+                  <div className="absolute bottom-0 left-0 w-full p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                    <div className="flex items-center justify-between">
+                      <h3 className="text-2xl font-bold text-white">{service.title}</h3>
+                      <div className="w-12 h-12 rounded-full bg-brand-500 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                        <ArrowRight className="w-6 h-6 -rotate-45 group-hover:rotate-0 transition-transform duration-500" />
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 4 - FEATURED PROJECTS */}
+      <section className="section-padding bg-white">
+        <div className="container-custom">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+            <div className="max-w-2xl">
+              <span className="text-brand-600 font-bold tracking-widest uppercase text-sm mb-4 block">Portfolio</span>
+              <h2 className="text-4xl md:text-5xl font-bold text-brand-950">Featured Projects</h2>
+            </div>
+            <Link to="/projects">
+              <Button variant="outline" className="border-brand-950 text-brand-950 hover:bg-brand-950 hover:text-white rounded-none px-8">
+                View All Projects
+              </Button>
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="md:col-span-8 group relative overflow-hidden rounded-2xl h-[500px]">
+              <img src={projectHighway} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" alt="Highway" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+              <div className="absolute bottom-8 left-8 right-8 text-white">
+                <Badge variant="accent" className="mb-4 bg-brand-500 text-white border-none">Completed</Badge>
+                <h3 className="text-3xl font-bold mb-2">Interstate 95 Expansion</h3>
+                <div className="flex gap-4 text-brand-200 text-sm">
+                  <span className="flex items-center gap-1"><MapPin className="w-4 h-4"/> North Region</span>
+                  <span className="flex items-center gap-1"><HardHat className="w-4 h-4"/> Highway Construction</span>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="md:col-span-4 flex flex-col gap-8">
+              {[
+                { img: projectDowntown, title: 'Downtown Resurfacing', loc: 'City Center', type: 'Asphalt Paving' },
+                { img: serviceConst, title: 'Airport Runway Alpha', loc: 'Regional Airport', type: 'Infrastructure' }
+              ].map((proj, i) => (
+                <div key={i} className="group relative overflow-hidden rounded-2xl h-[234px]">
+                  <img src={proj.img} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" alt={proj.title} />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+                  <div className="absolute bottom-6 left-6 right-6 text-white">
+                    <h3 className="text-xl font-bold mb-1">{proj.title}</h3>
+                    <div className="text-brand-200 text-sm">{proj.loc} &bull; {proj.type}</div>
+                  </div>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 5 - WHY CHOOSE US */}
+      <section className="section-padding bg-brand-950 text-white">
+        <div className="container-custom">
+          <div className="text-center max-w-3xl mx-auto mb-20">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">The Apex Advantage</h2>
+            <p className="text-xl text-brand-200 font-light">Uncompromising standards. Precision engineering. Superior results.</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
+            {[
+              { title: 'Experienced Team', icon: <HardHat className="w-10 h-10" /> },
+              { title: 'Modern Equipment', icon: <Settings className="w-10 h-10" /> },
+              { title: 'Quality Materials', icon: <Award className="w-10 h-10" /> },
+              { title: 'Safety First', icon: <ShieldCheck className="w-10 h-10" /> },
+              { title: 'On-Time Delivery', icon: <Clock className="w-10 h-10" /> },
+              { title: 'Engineering Expertise', icon: <TrendingUp className="w-10 h-10" /> },
+            ].map((feature, i) => (
+              <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="flex gap-6">
+                <div className="text-brand-500 shrink-0">{feature.icon}</div>
+                <div>
+                  <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
+                  <p className="text-brand-300 leading-relaxed text-sm">
+                    Leveraging industry best practices to deliver outstanding results that exceed client expectations every time.
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 6 - EQUIPMENT */}
+      <section className="py-24 bg-brand-50 overflow-hidden">
+        <div className="container-custom mb-12">
+          <h2 className="text-4xl font-bold text-brand-950">Our Heavy Machinery</h2>
+        </div>
+        
+        <div className="flex gap-6 px-4 md:px-8 pb-8 overflow-x-auto snap-x snap-mandatory hide-scrollbar">
+          {[
+            { img: eqPaver, name: 'Asphalt Paver' },
+            { img: eqRoller, name: 'Road Roller' },
+            { img: eqPaver, name: 'Excavator' },
+            { img: eqRoller, name: 'Motor Grader' },
+            { img: eqPaver, name: 'Tipper Truck' },
+          ].map((eq, i) => (
+            <div key={i} className="min-w-[300px] md:min-w-[400px] snap-center group">
+              <div className="bg-white p-4 rounded-2xl shadow-sm border border-brand-100 transition-all hover:shadow-xl">
+                <div className="aspect-[4/3] rounded-xl overflow-hidden mb-6 bg-gray-100">
+                  <img src={eq.img} alt={eq.name} className="w-full h-full object-cover mix-blend-multiply transition-transform duration-500 group-hover:scale-105" />
+                </div>
+                <h3 className="text-xl font-bold text-brand-950 text-center">{eq.name}</h3>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* SECTION 7 - PROCESS */}
+      <section className="section-padding bg-white">
+        <div className="container-custom">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-bold text-brand-950">Our Construction Process</h2>
+          </div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {[
+              'Site Survey', 'Planning', 'Site Preparation', 'Base Construction',
+              'Asphalt Paving', 'Compaction', 'Quality Inspection', 'Completion'
+            ].map((step, i) => (
+              <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="relative group">
+                <div className="text-6xl font-black text-brand-50 mb-4 transition-colors group-hover:text-brand-100">
+                  {String(i + 1).padStart(2, '0')}
+                </div>
+                <h3 className="text-lg font-bold text-brand-950 mb-2">{step}</h3>
+                <div className="w-12 h-1 bg-brand-500 transition-all group-hover:w-full" />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 8 - PROJECT STATISTICS */}
+      <section className="py-20 bg-brand-50 border-y border-brand-100">
+        <div className="container-custom">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <AnimatedCounter end={120} suffix="+" title="Completed Projects" />
+            <AnimatedCounter end={15} suffix="+" title="Years Experience" />
+            <AnimatedCounter end={40} suffix="+" title="Heavy Machines" />
+            <AnimatedCounter end={98} suffix="%" title="On-Time Completion" />
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 9 - TESTIMONIALS */}
+      <section className="section-padding bg-white">
+        <div className="container-custom">
+          <h2 className="text-4xl md:text-5xl font-bold text-brand-950 text-center mb-16">Client Testimonials</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[1, 2, 3].map((i) => (
+              <Card key={i} className="border-none shadow-soft bg-brand-50 hover:-translate-y-2 transition-transform duration-300">
+                <CardContent className="p-8">
+                  <Quote className="w-10 h-10 text-brand-300 mb-6" />
+                  <p className="text-brand-800 mb-8 italic leading-relaxed">
+                    "Apex Infra delivered exceptional results on our regional highway project. Their engineering expertise and commitment to timelines were truly impressive. Highly recommended."
+                  </p>
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-brand-200 rounded-full flex items-center justify-center font-bold text-brand-700">
+                      JD
+                    </div>
+                    <div>
+                      <div className="font-bold text-brand-950">John Doe {i}</div>
+                      <div className="text-sm text-brand-600">Sample Client Role</div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 10 - CTA */}
+      <section className="relative py-32 bg-brand-950 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img src={ctaBg} alt="CTA Background" className="w-full h-full object-cover opacity-30" />
+          <div className="absolute inset-0 bg-brand-950/80" />
+        </div>
+        <div className="container-custom relative z-10 text-center max-w-4xl mx-auto">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
+            <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">Have a Road Construction Project?</h2>
+            <p className="text-xl md:text-2xl text-brand-200 mb-12 font-light">Let's discuss your next infrastructure project and build something lasting.</p>
+            <div className="flex flex-col sm:flex-row justify-center gap-6">
+              <Button size="lg" className="bg-brand-500 hover:bg-brand-400 text-white rounded-none h-14 px-10 text-lg">
+                Get a Quote
+              </Button>
+              <Button variant="outline" size="lg" className="text-white border-white hover:bg-white hover:text-brand-950 rounded-none h-14 px-10 text-lg">
+                Contact Us
+              </Button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+      
+      {/* SECTION 11 - Footer is managed in PageLayout */}
+
+    </div>
+  );
+};

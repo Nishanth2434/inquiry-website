@@ -36,6 +36,14 @@ const showcaseServices = [
   { title: 'Other Services', desc: 'Specialized structural and civil engineering capabilities for unique challenges.', img: eqPaver, link: '/services' },
 ];
 
+const showcaseProjects = [
+  { title: 'Interstate 95 Expansion', loc: 'North Region', type: 'Highway Construction', status: 'Completed', img: projectHighway },
+  { title: 'Downtown Resurfacing', loc: 'City Center', type: 'Asphalt Paving', status: 'In Progress', img: projectDowntown },
+  { title: 'Airport Runway Alpha', loc: 'Regional Airport', type: 'Infrastructure', status: 'Completed', img: serviceConst },
+  { title: 'Urban Highway Development', loc: 'Metropolitan Area', type: 'Civil Engineering', status: 'Completed', img: projectHighway },
+  { title: 'Regional Infrastructure', loc: 'Eastern District', type: 'Road Maintenance', status: 'In Progress', img: projectDowntown }
+];
+
 // Reusable Animation Variants
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 40 },
@@ -84,6 +92,7 @@ const AnimatedCounter = ({ end, suffix = "", title }: { end: number, suffix?: st
 export const Home = () => {
   const [currentImage, setCurrentImage] = useState(0);
   const [activeService, setActiveService] = useState(0);
+  const [activeProject, setActiveProject] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -369,49 +378,112 @@ export const Home = () => {
       </section>
 
       {/* SECTION 4 - FEATURED PROJECTS */}
-      <section className="section-padding bg-white">
-        <div className="container-custom">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-            <div className="max-w-2xl">
-              <span className="text-brand-600 font-bold tracking-widest uppercase text-sm mb-4 block">Portfolio</span>
-              <h2 className="text-4xl md:text-5xl font-bold text-brand-950">Featured Projects</h2>
+      <section className="py-32 bg-[#FDFBF7]">
+        <div className="container-custom max-w-7xl">
+          {/* Header */}
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-6 border-b border-brand-950/10 pb-8">
+            <div>
+              <div className="flex items-center gap-4 mb-4">
+                <span className="text-[12px] font-bold tracking-[0.2em] text-brand-400 uppercase">03</span>
+                <div className="h-[1px] w-12 bg-brand-200" />
+                <span className="text-[12px] font-bold tracking-[0.2em] text-brand-950 uppercase">Selected Work</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-brand-950 mb-4 tracking-tight">Featured <br/>Projects</h2>
+              <p className="text-brand-700/80 font-light text-[17px] max-w-md">
+                A selection of infrastructure projects engineered for scale, durability and long-term performance.
+              </p>
             </div>
-            <Link to="/projects">
-              <Button variant="outline" className="border-brand-950 text-brand-950 hover:bg-brand-950 hover:text-white rounded-none px-8">
+            <Link to="/projects" className="group inline-flex items-center gap-4 border-b border-brand-950 pb-2 hover:border-accent-600 transition-colors">
+              <span className="text-[12px] font-bold tracking-[0.2em] text-brand-950 uppercase group-hover:text-accent-600 transition-colors">
                 View All Projects
-              </Button>
+              </span>
+              <ArrowRight className="w-4 h-4 text-brand-950 group-hover:text-accent-600 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="md:col-span-8 group relative overflow-hidden rounded-2xl h-[500px]">
-              <img src={projectHighway} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" alt="Highway" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-              <div className="absolute bottom-8 left-8 right-8 text-white">
-                <Badge variant="accent" className="mb-4 bg-brand-500 text-white border-none">Completed</Badge>
-                <h3 className="text-3xl font-bold mb-2">Interstate 95 Expansion</h3>
-                <div className="flex gap-4 text-brand-200 text-sm">
-                  <span className="flex items-center gap-1"><MapPin className="w-4 h-4"/> North Region</span>
-                  <span className="flex items-center gap-1"><HardHat className="w-4 h-4"/> Highway Construction</span>
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="md:col-span-4 flex flex-col gap-8">
-              {[
-                { img: projectDowntown, title: 'Downtown Resurfacing', loc: 'City Center', type: 'Asphalt Paving' },
-                { img: serviceConst, title: 'Airport Runway Alpha', loc: 'Regional Airport', type: 'Infrastructure' }
-              ].map((proj, i) => (
-                <div key={i} className="group relative overflow-hidden rounded-2xl h-[234px]">
-                  <img src={proj.img} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" alt={proj.title} />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-                  <div className="absolute bottom-6 left-6 right-6 text-white">
-                    <h3 className="text-xl font-bold mb-1">{proj.title}</h3>
-                    <div className="text-brand-200 text-sm">{proj.loc} &bull; {proj.type}</div>
+          {/* Project Showcase Layout */}
+          <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
+            
+            {/* Left: Project Navigation */}
+            <div className="w-full lg:w-[35%] flex flex-col gap-2 relative z-10">
+              {showcaseProjects.map((proj, idx) => {
+                const isActive = activeProject === idx;
+                return (
+                  <div 
+                    key={idx}
+                    className="cursor-pointer group flex items-start gap-6 p-4 rounded-xl transition-all duration-500"
+                    onMouseEnter={() => setActiveProject(idx)}
+                  >
+                    <div className="flex flex-col items-center gap-2 mt-1">
+                      <span className={cn("text-[10px] font-bold tracking-[0.1em] transition-colors duration-500", isActive ? "text-accent-600" : "text-brand-300")}>
+                        {String(idx + 1).padStart(2, '0')}
+                      </span>
+                      <div className={cn("w-[1px] transition-all duration-500", isActive ? "h-8 bg-accent-500" : "h-0 bg-transparent")} />
+                    </div>
+                    <div>
+                      <h3 className={cn(
+                        "text-xl font-bold tracking-tight transition-colors duration-500",
+                        isActive ? "text-brand-950" : "text-brand-400 group-hover:text-brand-600"
+                      )}>
+                        {proj.title}
+                      </h3>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </motion.div>
+                );
+              })}
+            </div>
+
+            {/* Right: Immersive Project Image */}
+            <div className="w-full lg:w-[65%] relative z-0">
+              <div className="relative aspect-[4/3] rounded-[32px] overflow-hidden shadow-[0_30px_80px_rgb(0,0,0,0.15)] bg-brand-100">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeProject}
+                    initial={{ opacity: 0, scale: 1.05 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                    className="absolute inset-0 w-full h-full"
+                  >
+                    <img src={showcaseProjects[activeProject].img} alt={showcaseProjects[activeProject].title} className="w-full h-full object-cover" />
+                  </motion.div>
+                </AnimatePresence>
+                <div className="absolute inset-0 border border-brand-950/5 rounded-[32px] pointer-events-none" />
+              </div>
+
+              {/* Information Panel */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeProject}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+                  className="absolute -bottom-8 -left-2 lg:-bottom-12 lg:-left-12 bg-[#FDFBF7] p-8 md:p-10 rounded-[24px] shadow-[0_20px_40px_rgb(0,0,0,0.06)] border border-brand-950/10 max-w-xs md:max-w-sm z-10"
+                >
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="w-1.5 h-1.5 rounded-full bg-accent-500" />
+                    <span className="text-[10px] font-bold tracking-[0.2em] text-brand-500 uppercase">
+                      {showcaseProjects[activeProject].status}
+                    </span>
+                  </div>
+                  
+                  <h3 className="text-xl md:text-2xl font-bold text-brand-950 mb-6 leading-tight">
+                    {showcaseProjects[activeProject].title}
+                  </h3>
+                  
+                  <div className="flex flex-col gap-2 mb-8">
+                    <span className="text-sm font-light text-brand-600 flex items-center gap-2"><MapPin className="w-4 h-4"/> {showcaseProjects[activeProject].loc}</span>
+                    <span className="text-sm font-light text-brand-600 flex items-center gap-2"><HardHat className="w-4 h-4"/> {showcaseProjects[activeProject].type}</span>
+                  </div>
+                  
+                  <Link to="/projects" className="inline-flex items-center gap-3 text-[11px] font-bold tracking-[0.15em] uppercase text-brand-950 hover:text-accent-600 transition-colors group">
+                    View Project <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
           </div>
         </div>
       </section>

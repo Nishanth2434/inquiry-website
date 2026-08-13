@@ -26,6 +26,15 @@ import ctaBg from '../assets/images/hero/cta_bg.jpg';
 
 const heroImages = [carousel1, carousel2, carousel3, carousel6];
 
+const showcaseServices = [
+  { title: 'Road Construction', desc: 'Building durable road networks engineered for long-term performance and high traffic capacity.', img: serviceConst, link: '/services/road-construction' },
+  { title: 'Asphalt Paving', desc: 'Premium quality asphalt applications for highways, municipal roads, and urban streets.', img: servicePaving, link: '/services/asphalt-paving' },
+  { title: 'Road Maintenance', desc: 'Comprehensive preservation and structural repair to extend infrastructure lifespan.', img: projectDowntown, link: '/services/road-maintenance' },
+  { title: 'Highway Development', desc: 'Large-scale structural development for major interstate and regional projects.', img: projectHighway, link: '/services/infrastructure' },
+  { title: 'Urban Infrastructure', desc: 'Precision grading, earthwork, and paving for complex city environments.', img: projectDowntown, link: '/services' },
+  { title: 'Other Services', desc: 'Specialized structural and civil engineering capabilities for unique challenges.', img: eqPaver, link: '/services' },
+];
+
 // Reusable Animation Variants
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 40 },
@@ -73,6 +82,7 @@ const AnimatedCounter = ({ end, suffix = "", title }: { end: number, suffix?: st
 
 export const Home = () => {
   const [currentImage, setCurrentImage] = useState(0);
+  const [activeService, setActiveService] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -254,46 +264,105 @@ export const Home = () => {
       </section>
 
       {/* SECTION 3 - SERVICES */}
-      <section className="section-padding bg-brand-50">
-        <div className="container-custom">
-          <div className="text-center max-w-3xl mx-auto mb-20">
-            <span className="text-brand-600 font-bold tracking-widest uppercase text-sm mb-4 block">Core Capabilities</span>
-            <h2 className="text-4xl md:text-5xl font-bold text-brand-950 mb-6">Advanced Infrastructure Solutions</h2>
+      <section className="py-32 bg-white">
+        <div className="container-custom max-w-7xl">
+          {/* Asymmetric Header */}
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-8">
+            <div className="flex items-center gap-4">
+              <span className="text-[12px] font-bold tracking-[0.2em] text-brand-400 uppercase">02</span>
+              <div className="h-[1px] w-12 bg-brand-200" />
+              <span className="text-[12px] font-bold tracking-[0.2em] text-brand-950 uppercase">What We Do</span>
+            </div>
+            <div className="max-w-xl md:text-right">
+              <h2 className="text-4xl md:text-5xl font-bold text-brand-950 mb-4 leading-[1.1] tracking-tight">
+                Advanced infrastructure <br/>
+                <span className="font-light italic text-brand-600">solutions built for lasting performance.</span>
+              </h2>
+              <p className="text-brand-700/80 font-light text-lg">
+                Delivering high-capacity construction services across multiple engineering disciplines.
+              </p>
+            </div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              { title: 'Road Construction', img: serviceConst, link: '/services/road-construction' },
-              { title: 'Asphalt Paving', img: servicePaving, link: '/services/asphalt-paving' },
-              { title: 'Road Maintenance', img: projectDowntown, link: '/services/road-maintenance' },
-              { title: 'Infrastructure', img: projectHighway, link: '/services/infrastructure' },
-              { title: 'Site Preparation', img: eqPaver, link: '/services' },
-              { title: 'Road Resurfacing', img: servicePaving, link: '/services' },
-            ].map((service, i) => (
-              <motion.div 
-                key={i}
-                initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}
-              >
-                <Link to={service.link} className="block group relative overflow-hidden rounded-2xl aspect-[4/3]">
-                  <img 
-                    src={service.img} 
-                    alt={service.title} 
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-950/90 via-brand-950/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
-                  <div className="absolute inset-0 bg-brand-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  
-                  <div className="absolute bottom-0 left-0 w-full p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-2xl font-bold text-white">{service.title}</h3>
-                      <div className="w-12 h-12 rounded-full bg-brand-500 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                        <ArrowRight className="w-6 h-6 -rotate-45 group-hover:rotate-0 transition-transform duration-500" />
+          {/* Interactive Service Showcase */}
+          <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-stretch">
+            {/* Left: Navigation List */}
+            <div className="w-full lg:w-[40%] flex flex-col justify-center">
+              {showcaseServices.map((service, index) => {
+                const isActive = activeService === index;
+                return (
+                  <div 
+                    key={index}
+                    className="relative border-b border-brand-950/10 cursor-pointer group"
+                    onMouseEnter={() => setActiveService(index)}
+                  >
+                    <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-accent-500 origin-top transition-transform duration-500 ease-[0.16,1,0.3,1]" style={{ transform: isActive ? 'scaleY(1)' : 'scaleY(0)' }} />
+                    <div className={cn(
+                      "py-6 pl-6 pr-4 transition-all duration-500 ease-[0.16,1,0.3,1]",
+                      isActive ? "bg-brand-50/50" : "hover:bg-brand-50/30"
+                    )}>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-6">
+                          <span className={cn(
+                            "text-[11px] font-bold tracking-widest transition-colors duration-500",
+                            isActive ? "text-accent-600" : "text-brand-300"
+                          )}>
+                            {String(index + 1).padStart(2, '0')}
+                          </span>
+                          <h3 className={cn(
+                            "text-xl md:text-2xl font-bold tracking-tight transition-colors duration-500",
+                            isActive ? "text-brand-950" : "text-brand-400 group-hover:text-brand-600"
+                          )}>
+                            {service.title}
+                          </h3>
+                        </div>
+                        {isActive && (
+                          <motion.div initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} className="hidden md:block">
+                            <ArrowRight className="w-5 h-5 text-accent-500" />
+                          </motion.div>
+                        )}
                       </div>
+                      
+                      <AnimatePresence>
+                        {isActive && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                            className="overflow-hidden"
+                          >
+                            <p className="text-brand-700/80 font-light mt-4 pl-14 text-sm leading-relaxed pr-8">
+                              {service.desc}
+                            </p>
+                            <Link to={service.link} className="inline-block mt-4 pl-14 text-[11px] font-bold tracking-[0.15em] uppercase text-brand-950 hover:text-accent-600 transition-colors">
+                              Explore Service &rarr;
+                            </Link>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </div>
                   </div>
-                </Link>
-              </motion.div>
-            ))}
+                );
+              })}
+            </div>
+
+            {/* Right: Image Presentation */}
+            <div className="w-full lg:w-[60%] h-[500px] lg:h-[700px] relative rounded-[28px] overflow-hidden shadow-[0_20px_60px_rgb(0,0,0,0.08)] bg-brand-100">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeService}
+                  initial={{ opacity: 0, scale: 1.05 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                  className="absolute inset-0 w-full h-full"
+                >
+                  <img src={showcaseServices[activeService].img} alt={showcaseServices[activeService].title} className="w-full h-full object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-950/40 via-brand-950/10 to-transparent mix-blend-multiply" />
+                </motion.div>
+              </AnimatePresence>
+            </div>
           </div>
         </div>
       </section>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { motion, useAnimation, useInView, type Variants } from 'framer-motion';
+import { motion, useAnimation, useInView, type Variants, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
   ArrowRight, CheckCircle2, Award, HardHat, TrendingUp, ShieldCheck, 

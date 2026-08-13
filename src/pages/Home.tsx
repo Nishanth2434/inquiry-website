@@ -24,6 +24,10 @@ import serviceConst from '../assets/images/services/service_construction.jpg';
 import eqPaver from '../assets/images/equipment/eq_paver.jpg';
 import eqRoller from '../assets/images/equipment/eq_roller.jpg';
 import ctaBg from '../assets/images/hero/cta_bg.jpg';
+import client1 from '../assets/images/testimonials/client_1.jpg';
+import client2 from '../assets/images/testimonials/client_2.jpg';
+import client3 from '../assets/images/testimonials/client_3.jpg';
+
 
 const heroImages = [carousel1, carousel2, carousel3, carousel6];
 

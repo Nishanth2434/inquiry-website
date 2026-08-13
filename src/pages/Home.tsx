@@ -10,7 +10,11 @@ import { Card, CardContent } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
 
 // Asset Imports
-import heroBg from '../assets/images/hero/hero_asphalt.jpg';
+import carousel1 from '../assets/images/hero/carousel_1.jpg';
+import carousel2 from '../assets/images/hero/carousel_2.jpg';
+import carousel3 from '../assets/images/hero/carousel_3.jpg';
+import carousel6 from '../assets/images/hero/carousel_6.jpg';
+
 import aboutImg from '../assets/images/about/about_team.jpg';
 import projectHighway from '../assets/images/projects/project_highway.jpg';
 import projectDowntown from '../assets/images/projects/project_downtown.jpg';
@@ -19,6 +23,8 @@ import serviceConst from '../assets/images/services/service_construction.jpg';
 import eqPaver from '../assets/images/equipment/eq_paver.jpg';
 import eqRoller from '../assets/images/equipment/eq_roller.jpg';
 import ctaBg from '../assets/images/hero/cta_bg.jpg';
+
+const heroImages = [carousel1, carousel2, carousel3, carousel6];
 
 // Reusable Animation Variants
 const fadeInUp: Variants = {
@@ -66,69 +72,85 @@ const AnimatedCounter = ({ end, suffix = "", title }: { end: number, suffix?: st
 };
 
 export const Home = () => {
+  const [currentImage, setCurrentImage] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % heroImages.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <div className="flex flex-col min-h-screen bg-white overflow-x-hidden">
       
       {/* SECTION 1 - HERO */}
-      <section className="relative min-h-[95vh] flex items-center bg-brand-950 overflow-hidden pt-20">
-        <div className="absolute inset-0 z-0">
-          <img src={heroBg} alt="Building Roads" className="w-full h-full object-cover opacity-40 scale-105" />
-          <div className="absolute inset-0 bg-gradient-to-r from-brand-950 via-brand-950/80 to-transparent" />
-          {/* Engineering Grid Overlay */}
-          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDEwIEwgNDAgMTAgTSAxMCAwIEwgMTAgNDAgTSAwIDIwIEwgNDAgMjAgTSAyMCAwIEwgMjAgNDAgTSAwIDMwIEwgNDAgMzAgTSAzMCAwIEwgMzAgNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-30" />
+      <section className="relative min-h-[100vh] flex items-center bg-brand-950 overflow-hidden">
+        {/* Cinematic Carousel Background */}
+        <div className="absolute inset-0 z-0 bg-brand-950">
+          <AnimatePresence initial={false}>
+            <motion.div
+              key={currentImage}
+              initial={{ opacity: 0, scale: 1 }}
+              animate={{ opacity: 1, scale: 1.04 }}
+              exit={{ opacity: 0 }}
+              transition={{
+                opacity: { duration: 1.5, ease: "easeInOut" },
+                scale: { duration: 6, ease: "linear" }
+              }}
+              className="absolute inset-0 w-full h-full"
+            >
+              <img 
+                src={heroImages[currentImage]} 
+                alt="Construction background" 
+                className="w-full h-full object-cover" 
+              />
+            </motion.div>
+          </AnimatePresence>
+          {/* Gradient Overlay for Readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-brand-950/90 via-brand-950/50 to-transparent z-10 mix-blend-multiply" />
+          <div className="absolute inset-0 bg-gradient-to-t from-brand-950/90 via-transparent to-transparent z-10" />
         </div>
         
-        <div className="container-custom relative z-10 w-full">
-          <div className="grid lg:grid-cols-12 gap-12 items-center">
+        <div className="container-custom relative z-20 w-full pt-32 pb-20">
+          <div className="max-w-4xl">
             <motion.div 
               initial="hidden" animate="visible" variants={staggerContainer}
-              className="lg:col-span-8"
             >
-              <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-900/50 border border-brand-700/50 backdrop-blur-sm mb-8">
-                <ShieldCheck className="w-5 h-5 text-brand-400" />
-                <span className="text-brand-100 text-sm font-medium tracking-wide">Trusted Infrastructure & Road Construction</span>
+              <motion.div variants={fadeInUp} className="inline-flex items-center gap-4 mb-8">
+                <div className="h-[2px] w-12 bg-accent-500" />
+                <span className="text-accent-500 font-bold tracking-[0.25em] uppercase text-sm">
+                  Premium Infrastructure Solutions
+                </span>
               </motion.div>
               
-              <motion.div variants={fadeInUp}>
-                <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-[1.1] tracking-tight">
-                  Building Roads.<br/>
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-300 to-brand-500">Connecting Progress.</span>
-                </h1>
-              </motion.div>
+              <motion.h1 variants={fadeInUp} className="text-5xl md:text-7xl lg:text-[84px] font-bold text-white mb-8 leading-[1.05] tracking-tight">
+                Building Roads.<br/>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-100 to-brand-300">Connecting Progress.</span>
+              </motion.h1>
 
-              <motion.div variants={fadeInUp}>
-                <p className="text-xl md:text-2xl text-brand-100 mb-10 max-w-2xl font-light leading-relaxed border-l-4 border-brand-500 pl-6">
-                  Delivering premium asphalt paving, structural road construction, and comprehensive infrastructure solutions engineered for durability.
-                </p>
-              </motion.div>
+              <motion.p variants={fadeInUp} className="text-xl md:text-2xl text-brand-100/90 mb-14 max-w-2xl font-light leading-relaxed border-l-[3px] border-accent-500 pl-6">
+                Delivering premium asphalt paving, structural road construction, and comprehensive infrastructure solutions engineered for durability and scale.
+              </motion.p>
               
-              <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-5">
+              <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-6">
                 <Link to="/projects">
-                  <Button size="lg" className="w-full sm:w-auto bg-brand-500 hover:bg-brand-400 text-white border-none text-lg px-8 h-14 rounded-none">
-                    Explore Our Projects
-                  </Button>
+                  <button className="group relative overflow-hidden rounded-[8px] bg-accent-500 px-10 h-16 transition-all duration-500 hover:shadow-[0_8px_30px_rgba(217,119,6,0.3)] hover:-translate-y-0.5 flex items-center justify-center w-full sm:w-auto">
+                    <span className="relative z-10 flex items-center gap-3 text-[15px] font-bold tracking-wider text-brand-950 uppercase transition-colors duration-500 group-hover:text-white">
+                      Explore Projects
+                      <ArrowRight className="w-5 h-5 transition-transform duration-500 group-hover:translate-x-1" />
+                    </span>
+                    <div className="absolute inset-0 z-0 h-full w-full bg-brand-950 translate-y-[101%] transition-transform duration-500 ease-[0.16,1,0.3,1] group-hover:translate-y-0" />
+                  </button>
                 </Link>
                 <Link to="/contact">
-                  <Button variant="outline" size="lg" className="w-full sm:w-auto text-white border-brand-500/50 hover:bg-brand-900/50 backdrop-blur-sm text-lg px-8 h-14 rounded-none">
-                    Get a Quote
-                  </Button>
+                  <button className="group relative overflow-hidden rounded-[8px] border border-white/20 bg-white/5 backdrop-blur-md px-10 h-16 transition-all duration-500 hover:bg-white/10 hover:border-white/40 hover:-translate-y-0.5 flex items-center justify-center w-full sm:w-auto">
+                    <span className="relative z-10 text-[15px] font-bold tracking-wider text-white uppercase transition-colors duration-500 group-hover:text-accent-100">
+                      Request a Quote
+                    </span>
+                  </button>
                 </Link>
               </motion.div>
-            </motion.div>
-
-            {/* Floating Stats */}
-            <motion.div 
-              initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1, delay: 0.5 }}
-              className="hidden lg:block lg:col-span-4 relative h-[400px]"
-            >
-              <div className="absolute top-10 right-0 bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-2xl w-64 shadow-2xl">
-                <div className="text-4xl font-bold text-white mb-1">120+</div>
-                <div className="text-brand-200 text-sm font-medium uppercase tracking-wider">Active Projects</div>
-              </div>
-              <div className="absolute bottom-10 right-10 bg-brand-600/90 backdrop-blur-md p-6 rounded-2xl w-64 shadow-2xl">
-                <div className="text-4xl font-bold text-white mb-1">98%</div>
-                <div className="text-brand-100 text-sm font-medium uppercase tracking-wider">On-Time Delivery</div>
-              </div>
             </motion.div>
           </div>
         </div>

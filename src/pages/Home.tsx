@@ -157,61 +157,97 @@ export const Home = () => {
       </section>
 
       {/* SECTION 2 - COMPANY INTRODUCTION */}
-      <section className="section-padding bg-white relative z-20">
-        <div className="container-custom">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="relative">
-              <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
+      <section className="py-32 bg-[#FDFBF7] relative z-20 overflow-hidden">
+        <div className="container-custom max-w-7xl">
+          <div className="flex flex-col lg:flex-row items-center relative">
+            
+            {/* Left: Immersive Image Canvas (60% width) */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 1.04 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+              className="w-full lg:w-[60%] relative z-0"
+            >
+              <div className="relative aspect-[4/3] rounded-[24px] overflow-hidden shadow-[0_20px_60px_rgb(0,0,0,0.12)]">
                 <img src={aboutImg} alt="Engineering Team" className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-950/60 via-brand-950/10 to-transparent mix-blend-multiply" />
+                <div className="absolute inset-0 border border-brand-950/10 rounded-[24px]" />
               </div>
-              <div className="absolute -bottom-8 -right-8 bg-brand-950 p-8 rounded-2xl shadow-xl hidden md:block">
-                <div className="flex items-center gap-4">
-                  <Award className="w-12 h-12 text-brand-400" />
-                  <div>
-                    <div className="text-3xl font-bold text-white">ISO 9001</div>
-                    <div className="text-brand-200 text-sm">Certified Quality</div>
-                  </div>
-                </div>
+              
+              {/* Image Annotation */}
+              <div className="absolute bottom-8 left-8 bg-[#FDFBF7]/90 backdrop-blur-md px-5 py-3 rounded-[8px] shadow-lg border border-brand-950/5 flex items-center gap-3">
+                <div className="w-1.5 h-1.5 rounded-full bg-accent-500 animate-pulse" />
+                <span className="text-[10px] font-bold tracking-[0.2em] text-brand-950 uppercase">
+                  TEJASHWI / Field Operations
+                </span>
               </div>
             </motion.div>
             
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="lg:pl-8">
-              <motion.div variants={fadeInUp} className="mb-4">
-                <span className="text-brand-600 font-bold tracking-widest uppercase text-sm">Our Legacy</span>
-              </motion.div>
-              <motion.h2 variants={fadeInUp} className="text-4xl md:text-5xl font-bold text-brand-950 mb-8 leading-tight">
-                Engineering excellence in every mile we pave.
-              </motion.h2>
-              <motion.div variants={fadeInUp} className="space-y-6 text-lg text-brand-700/80 mb-10">
-                <p>
-                  Apex Infra stands at the forefront of modern infrastructure development. We specialize in heavy civil construction, delivering robust road networks that power economies.
-                </p>
-                <p>
-                  Our commitment to utilizing cutting-edge machinery and premium materials ensures that every project, from vast highways to intricate urban developments, is built to withstand the test of time and traffic.
-                </p>
-              </motion.div>
-              
-              <motion.div variants={fadeInUp} className="grid grid-cols-2 gap-6 mb-10">
-                {[
-                  { label: 'Years Experience', val: '15+' },
-                  { label: 'Projects Completed', val: '120+' },
-                  { label: 'Heavy Machines', val: '40+' },
-                  { label: 'Regions Served', val: 'Multiple' },
-                ].map((m, i) => (
-                  <div key={i} className="border-l-2 border-brand-500 pl-4">
-                    <div className="text-2xl font-bold text-brand-950">{m.val}</div>
-                    <div className="text-sm text-brand-600 font-medium">{m.label}</div>
-                  </div>
-                ))}
-              </motion.div>
+            {/* Right: Editorial Text Composition (45% width, overlapping left by 5%) */}
+            <motion.div 
+              initial="hidden" 
+              whileInView="visible" 
+              viewport={{ once: true, margin: "-100px" }} 
+              variants={staggerContainer} 
+              className="w-full lg:w-[45%] lg:-ml-[5%] relative z-10 mt-12 lg:mt-0"
+            >
+              <div className="bg-[#FDFBF7] p-10 md:p-14 rounded-[20px] shadow-[0_30px_80px_rgb(0,0,0,0.08)] border border-brand-950/5">
+                
+                {/* Section Label */}
+                <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } } }} className="flex items-center gap-4 mb-8">
+                  <span className="text-[12px] font-bold tracking-[0.2em] text-brand-400 uppercase">01</span>
+                  <div className="h-[1px] w-12 bg-brand-200" />
+                  <span className="text-[12px] font-bold tracking-[0.2em] text-brand-950 uppercase">Our Legacy</span>
+                </motion.div>
+                
+                <motion.h2 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } } }} className="text-4xl md:text-5xl lg:text-[52px] font-bold text-brand-950 mb-8 leading-[1.1] tracking-tight">
+                  Engineering <br/>
+                  <span className="text-brand-600 font-light italic">excellence.</span>
+                </motion.h2>
+                
+                <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } } }} className="space-y-6 text-[17px] text-brand-700/80 mb-12 font-light leading-relaxed">
+                  <p>
+                    TEJASHWI stands at the forefront of modern infrastructure development. We specialize in heavy civil construction, delivering robust road networks that power economies and connect communities.
+                  </p>
+                  <p>
+                    Our commitment to utilizing cutting-edge machinery and premium materials ensures that every project, from vast highways to intricate urban developments, is engineered for generations.
+                  </p>
+                </motion.div>
+                
+                {/* Staggered Statistics */}
+                <div className="grid grid-cols-2 gap-8 mb-12 border-t border-brand-950/10 pt-8">
+                  {[
+                    { label: 'Years Experience', val: '15+' },
+                    { label: 'Projects Completed', val: '120+' },
+                    { label: 'Heavy Machines', val: '40+' },
+                    { label: 'Regions Served', val: 'Multiple' },
+                  ].map((m, i) => (
+                    <motion.div 
+                      key={i} 
+                      variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } } }}
+                      className="relative pl-5"
+                    >
+                      <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-brand-100 rounded-full overflow-hidden">
+                        <div className="absolute top-0 left-0 w-full h-1/2 bg-accent-500 rounded-full" />
+                      </div>
+                      <div className="text-3xl font-bold text-brand-950 mb-1 tracking-tight">{m.val}</div>
+                      <div className="text-[11px] text-brand-500 font-bold tracking-widest uppercase">{m.label}</div>
+                    </motion.div>
+                  ))}
+                </div>
 
-              <motion.div variants={fadeInUp}>
-                <Link to="/about">
-                  <Button className="rounded-none bg-brand-950 hover:bg-brand-800 text-white px-8 h-14">
-                    Learn More About Us <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
-                </Link>
-              </motion.div>
+                <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } } }}>
+                  <Link to="/about" className="group inline-flex items-center gap-4">
+                    <span className="text-[13px] font-bold tracking-[0.15em] text-brand-950 uppercase group-hover:text-accent-600 transition-colors">
+                      Discover Our Story
+                    </span>
+                    <div className="w-10 h-10 rounded-full border border-brand-200 flex items-center justify-center group-hover:border-accent-500 group-hover:bg-accent-500 transition-all duration-300">
+                      <ArrowRight className="w-4 h-4 text-brand-950 group-hover:text-white group-hover:translate-x-0.5 transition-transform" />
+                    </div>
+                  </Link>
+                </motion.div>
+              </div>
             </motion.div>
           </div>
         </div>

@@ -598,20 +598,39 @@ export const Home = () => {
         <div className="container-custom">
           <h2 className="text-4xl md:text-5xl font-bold text-brand-950 text-center mb-16">Client Testimonials</h2>
           <div className="grid md:grid-cols-3 gap-8">
-            {[1, 2, 3].map((i) => (
-              <Card key={i} className="border-none shadow-soft bg-brand-50 hover:-translate-y-2 transition-transform duration-300">
+            {[
+              {
+                text: "Tejashwi Constructions delivered exceptional quality on the Mysore Ring Road resurfacing. Their team's dedication to timelines and material quality is unmatched in the region.",
+                initials: "RG",
+                name: "Ramesh Gowda",
+                role: "Chief Engineer, Mysore Infrastructure Dev"
+              },
+              {
+                text: "The asphalt paving work done in Mandya city limits has significantly improved traffic flow. Tejashwi's modern machinery and skilled operators ensured a flawless finish.",
+                initials: "SH",
+                name: "Suresh H.K.",
+                role: "Mandya District PWD"
+              },
+              {
+                text: "We contracted them for a major highway expansion connecting Mysore and Srirangapatna. Their professionalism, safety standards, and engineering excellence exceeded our expectations.",
+                initials: "PN",
+                name: "Priya N.",
+                role: "Project Director, Highway Authority"
+              }
+            ].map((testimonial, i) => (
+              <Card key={i} className="border-none shadow-[0_8px_30px_rgb(0,0,0,0.04)] bg-brand-50/50 hover:bg-brand-50 hover:-translate-y-2 transition-all duration-300">
                 <CardContent className="p-8">
                   <Quote className="w-10 h-10 text-brand-300 mb-6" />
-                  <p className="text-brand-800 mb-8 italic leading-relaxed">
-                    "Apex Infra delivered exceptional results on our regional highway project. Their engineering expertise and commitment to timelines were truly impressive. Highly recommended."
+                  <p className="text-brand-800 mb-8 italic leading-relaxed text-[15px]">
+                    "{testimonial.text}"
                   </p>
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-brand-200 rounded-full flex items-center justify-center font-bold text-brand-700">
-                      JD
+                    <div className="w-12 h-12 bg-white shadow-sm border border-brand-100 rounded-full flex items-center justify-center font-bold text-brand-700">
+                      {testimonial.initials}
                     </div>
                     <div>
-                      <div className="font-bold text-brand-950">John Doe {i}</div>
-                      <div className="text-sm text-brand-600">Sample Client Role</div>
+                      <div className="font-bold text-brand-950">{testimonial.name}</div>
+                      <div className="text-sm text-brand-600">{testimonial.role}</div>
                     </div>
                   </div>
                 </CardContent>

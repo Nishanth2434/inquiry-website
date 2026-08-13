@@ -8,6 +8,7 @@ import {
 import { Button } from '../components/ui/Button';
 import { Card, CardContent } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
+import { cn } from '../utils/cn';
 
 // Asset Imports
 import carousel1 from '../assets/images/hero/carousel_1.jpg';

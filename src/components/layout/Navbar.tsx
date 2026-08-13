@@ -113,7 +113,7 @@ export const Navbar = () => {
       >
         
         {/* Logo Lockup - Architectural Editorial Style */}
-        <Link to="/" className="flex items-center group relative shrink-0">
+        <Link to="/" className="flex items-center group relative flex-1 shrink-0">
           {!logoError ? (
             <div className="flex items-center gap-4">
               <img 
@@ -148,7 +148,7 @@ export const Navbar = () => {
         </Link>
 
         {/* Center: Desktop Navigation */}
-        <div className="hidden lg:flex items-center absolute left-1/2 -translate-x-1/2">
+        <div className="hidden lg:flex items-center justify-center shrink-0">
           <NavLink to="/about" isActive={isActive('/about')}>About</NavLink>
 
           {/* Services Dropdown */}
@@ -213,7 +213,7 @@ export const Navbar = () => {
         </div>
 
         {/* Right: CTA Area */}
-        <div className="hidden lg:flex items-center gap-6 shrink-0">
+        <div className="hidden lg:flex items-center justify-end gap-6 flex-1 shrink-0">
           <Link to="/contact">
             <button className={cn(
               "group relative overflow-hidden bg-brand-950 text-[#FDFBF7] font-semibold text-[13px] tracking-widest uppercase transition-all duration-500 hover:shadow-[0_8px_20px_rgb(3,7,18,0.15)]",

@@ -601,19 +601,19 @@ export const Home = () => {
             {[
               {
                 text: "Tejashwi Constructions delivered exceptional quality on the Mysore Ring Road resurfacing. Their team's dedication to timelines and material quality is unmatched in the region.",
-                initials: "RG",
+                photo: client1,
                 name: "Ramesh Gowda",
                 role: "Chief Engineer, Mysore Infrastructure Dev"
               },
               {
                 text: "The asphalt paving work done in Mandya city limits has significantly improved traffic flow. Tejashwi's modern machinery and skilled operators ensured a flawless finish.",
-                initials: "SH",
+                photo: client2,
                 name: "Suresh H.K.",
                 role: "Mandya District PWD"
               },
               {
                 text: "We contracted them for a major highway expansion connecting Mysore and Srirangapatna. Their professionalism, safety standards, and engineering excellence exceeded our expectations.",
-                initials: "PN",
+                photo: client3,
                 name: "Priya N.",
                 role: "Project Director, Highway Authority"
               }
@@ -625,9 +625,7 @@ export const Home = () => {
                     "{testimonial.text}"
                   </p>
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-white shadow-sm border border-brand-100 rounded-full flex items-center justify-center font-bold text-brand-700">
-                      {testimonial.initials}
-                    </div>
+                    <img src={testimonial.photo} alt={testimonial.name} className="w-12 h-12 rounded-full object-cover border border-brand-100 shadow-sm" />
                     <div>
                       <div className="font-bold text-brand-950">{testimonial.name}</div>
                       <div className="text-sm text-brand-600">{testimonial.role}</div>

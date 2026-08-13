@@ -548,9 +548,9 @@ export const Home = () => {
               { img: eqRoller, name: 'Motor Grader' },
               { img: eqPaver, name: 'Tipper Truck' },
             ].map((eq, i) => (
-              <div key={i} className="min-w-[300px] md:min-w-[400px] shrink-0 group">
-                <div className="bg-white p-4 rounded-2xl shadow-sm border border-brand-100 transition-all hover:shadow-xl cursor-pointer">
-                  <div className="aspect-[4/3] rounded-xl overflow-hidden mb-6 bg-gray-100">
+              <div key={i} className="min-w-[260px] md:min-w-[280px] shrink-0 group">
+                <div className="bg-white p-3 rounded-2xl shadow-sm border border-brand-100 transition-all hover:shadow-xl cursor-pointer">
+                  <div className="aspect-[4/3] rounded-xl overflow-hidden mb-4 bg-gray-100">
                     <img src={eq.img} alt={eq.name} className="w-full h-full object-cover mix-blend-multiply transition-transform duration-500 group-hover:scale-105" />
                   </div>
                   <h3 className="text-xl font-bold text-brand-950 text-center">{eq.name}</h3>

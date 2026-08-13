@@ -107,8 +107,8 @@ export const Navbar = () => {
         className={cn(
           "pointer-events-auto flex items-center justify-between transition-all duration-700 ease-[0.16,1,0.3,1] mx-auto overflow-visible",
           isScrolled 
-            ? "w-[90%] max-w-4xl bg-[#FDFBF7]/85 backdrop-blur-xl shadow-[0_12px_40px_rgb(0,0,0,0.08)] border border-brand-950/10 rounded-[20px] px-6 py-2.5" 
-            : "w-[95%] max-w-7xl bg-[#FDFBF7]/75 backdrop-blur-md shadow-[0_4px_20px_rgb(0,0,0,0.04)] border border-brand-950/5 rounded-[16px] px-8 py-3.5"
+            ? "w-[90%] max-w-4xl bg-[#FDFBF7]/90 backdrop-blur-xl shadow-[0_12px_40px_rgb(0,0,0,0.08)] border border-brand-950/10 rounded-[20px] px-6 py-2.5" 
+            : "w-[95%] max-w-7xl bg-transparent border-transparent rounded-[16px] px-8 py-3.5"
         )}
       >
         

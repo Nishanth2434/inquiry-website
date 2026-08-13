@@ -525,23 +525,35 @@ export const Home = () => {
           <h2 className="text-4xl font-bold text-brand-950">Our Heavy Machinery</h2>
         </div>
         
-        <div className="flex gap-6 px-4 md:px-8 pb-8 overflow-x-auto snap-x snap-mandatory hide-scrollbar">
-          {[
-            { img: eqPaver, name: 'Asphalt Paver' },
-            { img: eqRoller, name: 'Road Roller' },
-            { img: eqPaver, name: 'Excavator' },
-            { img: eqRoller, name: 'Motor Grader' },
-            { img: eqPaver, name: 'Tipper Truck' },
-          ].map((eq, i) => (
-            <div key={i} className="min-w-[300px] md:min-w-[400px] snap-center group">
-              <div className="bg-white p-4 rounded-2xl shadow-sm border border-brand-100 transition-all hover:shadow-xl">
-                <div className="aspect-[4/3] rounded-xl overflow-hidden mb-6 bg-gray-100">
-                  <img src={eq.img} alt={eq.name} className="w-full h-full object-cover mix-blend-multiply transition-transform duration-500 group-hover:scale-105" />
+        <div className="relative w-full overflow-hidden flex">
+          <motion.div 
+            className="flex gap-6 px-3 shrink-0"
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{ duration: 30, ease: "linear", repeat: Infinity }}
+          >
+            {[
+              { img: eqPaver, name: 'Asphalt Paver' },
+              { img: eqRoller, name: 'Road Roller' },
+              { img: eqPaver, name: 'Excavator' },
+              { img: eqRoller, name: 'Motor Grader' },
+              { img: eqPaver, name: 'Tipper Truck' },
+              // Duplicate the list to create a seamless infinite loop
+              { img: eqPaver, name: 'Asphalt Paver' },
+              { img: eqRoller, name: 'Road Roller' },
+              { img: eqPaver, name: 'Excavator' },
+              { img: eqRoller, name: 'Motor Grader' },
+              { img: eqPaver, name: 'Tipper Truck' },
+            ].map((eq, i) => (
+              <div key={i} className="min-w-[300px] md:min-w-[400px] shrink-0 group">
+                <div className="bg-white p-4 rounded-2xl shadow-sm border border-brand-100 transition-all hover:shadow-xl cursor-pointer">
+                  <div className="aspect-[4/3] rounded-xl overflow-hidden mb-6 bg-gray-100">
+                    <img src={eq.img} alt={eq.name} className="w-full h-full object-cover mix-blend-multiply transition-transform duration-500 group-hover:scale-105" />
+                  </div>
+                  <h3 className="text-xl font-bold text-brand-950 text-center">{eq.name}</h3>
                 </div>
-                <h3 className="text-xl font-bold text-brand-950 text-center">{eq.name}</h3>
               </div>
-            </div>
-          ))}
+            ))}
+          </motion.div>
         </div>
       </section>
 

@@ -117,10 +117,10 @@ export const Navbar = () => {
           {!logoError ? (
             <div className="flex items-center gap-4">
               <img 
-                src="/gsp-logo.jpg" 
+                src="/gsp-logo.png" 
                 alt="GSP Constructions Logo" 
                 className={cn(
-                  "w-auto mix-blend-multiply contrast-125 brightness-105 transition-all duration-700 ease-[0.16,1,0.3,1] group-hover:scale-105",
+                  "w-auto transition-all duration-700 ease-[0.16,1,0.3,1] group-hover:scale-105",
                   isScrolled ? "h-9" : "h-11"
                 )} 
                 onError={() => setLogoError(true)}

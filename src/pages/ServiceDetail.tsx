@@ -33,8 +33,8 @@ export const ServiceDetail = () => {
   return (
     <div className="flex flex-col min-h-screen bg-white">
       
-      {/* SECTION 1 - HERO */}
-      <section className="relative h-[60vh] min-h-[500px] flex items-center bg-brand-950 overflow-hidden pt-20">
+      {/* HERO SECTION */}
+      <section className="relative h-[60vh] min-h-[500px] flex items-center bg-brand-950 overflow-hidden pt-16 lg:pt-20">
         <div className="absolute inset-0 z-0">
           <img src={service.heroImage} alt={service.title} className="w-full h-full object-cover opacity-40 scale-105" />
           <div className="absolute inset-0 bg-gradient-to-t from-brand-950 via-brand-950/70 to-brand-950/30" />
@@ -47,15 +47,15 @@ export const ServiceDetail = () => {
                 ← Back to Services
               </Link>
             </motion.div>
-            <motion.h1 variants={fadeInUp} className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+            <motion.h1 variants={fadeInUp} className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
               {service.title}
             </motion.h1>
           </motion.div>
         </div>
       </section>
 
-      {/* SECTION 2 - SERVICE INTRODUCTION */}
-      <section className="py-24 bg-white">
+      {/* CAPABILITIES SECTION */}
+      <section className="py-12 lg:py-24 bg-white">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-light text-brand-950 leading-relaxed">
@@ -202,8 +202,8 @@ export const ServiceDetail = () => {
         </div>
       </section>
 
-      {/* SECTION 9 - CTA */}
-      <section className="relative py-32 bg-brand-900 overflow-hidden">
+      {/* CTA SECTION */}
+      <section className="relative py-16 lg:py-32 bg-brand-900 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img src={ctaBg} alt="CTA Background" className="w-full h-full object-cover opacity-20" />
           <div className="absolute inset-0 bg-brand-900/80" />

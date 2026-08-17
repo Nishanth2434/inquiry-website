@@ -20,7 +20,7 @@ export const Equipment = () => {
   return (
     <div className="bg-white min-h-screen flex flex-col">
       {/* SECTION 1 - HERO */}
-      <section className="relative h-[60vh] min-h-[500px] flex items-center bg-brand-950 overflow-hidden pt-20">
+      <section className="relative h-[60vh] min-h-[500px] flex items-center bg-brand-950 overflow-hidden pt-16 lg:pt-20">
         <div className="absolute inset-0 z-0">
           <img src={mockEquipment[0].image} alt="Fleet" className="w-full h-full object-cover opacity-30" />
           <div className="absolute inset-0 bg-brand-950/70" />
@@ -31,7 +31,7 @@ export const Equipment = () => {
             <motion.div variants={fadeInUp} className="mb-4">
               <span className="text-brand-400 font-bold tracking-widest uppercase text-sm">Machinery & Assets</span>
             </motion.div>
-            <motion.h1 variants={fadeInUp} className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+            <motion.h1 variants={fadeInUp} className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
               Powering Progress with <span className="text-brand-400">Precision.</span>
             </motion.h1>
             <motion.p variants={fadeInUp} className="text-xl text-brand-200">
@@ -95,13 +95,13 @@ export const Equipment = () => {
       </section>
 
       {/* SECTION 3 - CTA */}
-      <section className="relative py-32 bg-brand-900 overflow-hidden">
+      <section className="relative py-16 lg:py-32 bg-brand-900 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img src={ctaBg} alt="CTA Background" className="w-full h-full object-cover opacity-20" />
           <div className="absolute inset-0 bg-brand-900/80" />
         </div>
         <div className="container-custom relative z-10 text-center max-w-4xl mx-auto">
-          <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">Need Heavy Machinery for Your Project?</h2>
+          <h2 className="text-3xl md:text-6xl font-bold text-white mb-6 px-4">Need Heavy Machinery for Your Project?</h2>
           <Link to="/contact">
             <Button size="lg" className="bg-brand-500 hover:bg-brand-400 text-white rounded-none h-14 px-10 text-lg">
               Contact Us Today

@@ -51,7 +51,7 @@ export const Contact = () => {
     <div className="bg-white min-h-screen">
       
       {/* HERO SECTION */}
-      <section className="relative h-[50vh] min-h-[400px] flex items-center bg-brand-950 overflow-hidden pt-20">
+      <section className="relative h-[50vh] min-h-[400px] flex items-center bg-brand-950 overflow-hidden pt-16 lg:pt-20">
         <div className="absolute inset-0 z-0 opacity-40">
           <img src={ctaBg} alt="Contact Us" className="w-full h-full object-cover scale-105" />
           <div className="absolute inset-0 bg-brand-950/70" />
@@ -62,7 +62,7 @@ export const Contact = () => {
             <motion.div variants={fadeInUp} className="mb-4">
               <span className="text-brand-400 font-bold tracking-widest uppercase text-sm">Get In Touch</span>
             </motion.div>
-            <motion.h1 variants={fadeInUp} className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+            <motion.h1 variants={fadeInUp} className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
               Let's Build Something <span className="text-brand-400">That Lasts.</span>
             </motion.h1>
           </motion.div>

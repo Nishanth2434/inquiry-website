@@ -27,15 +27,15 @@ export const Projects = () => {
 
   return (
     <div className="bg-white min-h-screen">
-      {/* Header Section */}
-      <section className="relative pt-32 pb-20 bg-brand-950 overflow-hidden">
+      {/* HERO SECTION */}
+      <section className="relative pt-24 lg:pt-32 pb-12 lg:pb-20 bg-brand-950 overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-30">
           <img src={ctaBg} alt="Projects Background" className="w-full h-full object-cover scale-105" />
           <div className="absolute inset-0 bg-brand-950/80" />
         </div>
         <div className="container-custom relative z-10 text-center max-w-4xl mx-auto">
           <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
-            <motion.h1 variants={fadeInUp} className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight">
+            <motion.h1 variants={fadeInUp} className="text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 tracking-tight">
               Projects That Move <span className="text-brand-400">People Forward.</span>
             </motion.h1>
             <motion.p variants={fadeInUp} className="text-xl text-brand-200 font-light">
@@ -91,7 +91,7 @@ export const Projects = () => {
                     transition={{ duration: 0.4 }}
                     className={`group ${isLarge ? 'md:col-span-8' : 'md:col-span-4'}`}
                   >
-                    <Link to={`/projects/${project.id}`} className="block relative overflow-hidden rounded-3xl h-[400px] md:h-[500px]">
+                    <Link to={`/projects/${project.id}`} className="block relative overflow-hidden rounded-3xl h-[300px] md:h-[500px]">
                       <img 
                         src={project.image} 
                         alt={project.title} 

@@ -120,7 +120,7 @@ export const About = () => {
       </section>
 
       {/* SECTION 3 - MISSION & VISION */}
-      <section className="py-20 bg-brand-50">
+      <section className="py-16 md:py-20 bg-brand-50">
         <div className="container-custom">
           <div className="grid md:grid-cols-2 gap-8">
             <motion.div 
@@ -255,8 +255,8 @@ export const About = () => {
         </div>
       </section>
 
-      {/* SECTION 8 - CTA */}
-      <section className="relative py-32 bg-brand-900 overflow-hidden">
+      {/* SECTION 6 - CTA */}
+      <section className="relative py-16 md:py-32 bg-brand-950 text-white overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img src={ctaBg} alt="CTA Background" className="w-full h-full object-cover opacity-20" />
           <div className="absolute inset-0 bg-brand-900/80" />
@@ -265,12 +265,13 @@ export const About = () => {
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
             <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">Build your future with Apex.</h2>
             <p className="text-xl md:text-2xl text-brand-200 mb-12 font-light">Partner with the industry leaders for your next major infrastructure development.</p>
-            <div className="flex flex-col sm:flex-row justify-center gap-6">
-              <Link to="/contact">
-                <Button size="lg" className="w-full sm:w-auto bg-brand-500 hover:bg-brand-400 text-white rounded-none h-14 px-10 text-lg">
-                  Get a Quote
-                </Button>
-              </Link>
+            <div className="flex flex-col sm:flex-row justify-center gap-4 lg:gap-6">
+              <Button size="lg" className="bg-accent-500 hover:bg-accent-400 text-brand-950 rounded-xl h-14 px-8 text-[15px] font-bold tracking-widest uppercase transition-all duration-300 w-full sm:w-auto">
+                Discuss Your Project
+              </Button>
+              <Button variant="outline" size="lg" className="border-brand-500 text-brand-200 hover:bg-brand-500/20 hover:text-white rounded-xl h-14 px-8 text-[15px] font-bold tracking-widest uppercase transition-all duration-300 w-full sm:w-auto">
+                Contact Our Team
+              </Button>
             </div>
           </motion.div>
         </div>

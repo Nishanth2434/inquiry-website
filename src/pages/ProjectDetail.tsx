@@ -33,8 +33,8 @@ export const ProjectDetail = () => {
   return (
     <div className="flex flex-col min-h-screen bg-white">
       
-      {/* SECTION 1 - PROJECT HERO */}
-      <section className="relative h-[70vh] min-h-[600px] flex items-end pb-20 pt-32 bg-brand-950 overflow-hidden">
+      {/* HERO / COVER IMAGE */}
+      <section className="relative h-[70vh] min-h-[600px] flex items-end pb-12 lg:pb-20 pt-24 lg:pt-32 bg-brand-950 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img src={project.image} alt={project.title} className="w-full h-full object-cover opacity-60" />
           <div className="absolute inset-0 bg-gradient-to-t from-brand-950 via-brand-950/60 to-transparent" />
@@ -47,7 +47,7 @@ export const ProjectDetail = () => {
                 ← Back to Portfolio
               </Link>
             </motion.div>
-            <motion.h1 variants={fadeInUp} className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+            <motion.h1 variants={fadeInUp} className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
               {project.title}
             </motion.h1>
             <motion.div variants={fadeInUp} className="flex flex-wrap gap-4 text-brand-200 text-lg font-medium">
@@ -193,8 +193,8 @@ export const ProjectDetail = () => {
         </div>
       </section>
 
-      {/* SECTION 11 - CTA */}
-      <section className="relative py-32 bg-brand-900 overflow-hidden">
+      {/* CTA SECTION */}
+      <section className="relative py-16 lg:py-32 bg-brand-900 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img src={ctaBg} alt="CTA Background" className="w-full h-full object-cover opacity-20" />
           <div className="absolute inset-0 bg-brand-900/80" />

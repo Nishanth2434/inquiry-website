@@ -31,13 +31,13 @@ export const Gallery = () => {
   }, [lightboxIndex, filteredImages.length]);
 
   return (
-    <div className="bg-white min-h-screen pt-24 pb-20">
+    <div className="bg-white min-h-screen pt-20 lg:pt-24 pb-12 lg:pb-20">
       
       {/* Header */}
       <section className="py-12 bg-white">
         <div className="container-custom text-center max-w-3xl mx-auto">
           <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
-            <h1 className="text-5xl md:text-6xl font-bold text-brand-950 mb-6">Visual Gallery</h1>
+            <h1 className="text-4xl md:text-6xl font-bold text-brand-950 mb-6">Visual Gallery</h1>
             <p className="text-xl text-brand-600">A showcase of our engineering precision, heavy machinery, and dedicated teams in action.</p>
           </motion.div>
         </div>

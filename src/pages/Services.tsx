@@ -24,7 +24,7 @@ export const Services = () => {
     <div className="flex flex-col min-h-screen bg-white">
       
       {/* SECTION 1 - HERO */}
-      <section className="relative h-[60vh] min-h-[500px] flex items-center bg-brand-950 overflow-hidden pt-20">
+      <section className="relative h-[60vh] min-h-[500px] flex items-center bg-brand-950 overflow-hidden pt-16 lg:pt-20">
         <div className="absolute inset-0 z-0">
           <img src={heroBg} alt="Our Services" className="w-full h-full object-cover opacity-30" />
           <div className="absolute inset-0 bg-brand-950/70" />
@@ -35,7 +35,7 @@ export const Services = () => {
             <motion.div variants={fadeInUp} className="mb-4">
               <span className="text-brand-400 font-bold tracking-widest uppercase text-sm">Capabilities</span>
             </motion.div>
-            <motion.h1 variants={fadeInUp} className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+            <motion.h1 variants={fadeInUp} className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
               Comprehensive <span className="text-brand-400">Infrastructure</span> Solutions.
             </motion.h1>
             <motion.p variants={fadeInUp} className="text-xl text-brand-200">
@@ -128,7 +128,7 @@ export const Services = () => {
       </section>
 
       {/* SECTION 5 - CTA */}
-      <section className="relative py-32 bg-brand-900 overflow-hidden">
+      <section className="relative py-16 lg:py-32 bg-brand-900 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img src={ctaBg} alt="CTA Background" className="w-full h-full object-cover opacity-20" />
           <div className="absolute inset-0 bg-brand-900/80" />

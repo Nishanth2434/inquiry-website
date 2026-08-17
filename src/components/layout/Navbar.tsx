@@ -107,21 +107,21 @@ export const Navbar = () => {
         className={cn(
           "pointer-events-auto flex items-center justify-between transition-all duration-700 ease-[0.16,1,0.3,1] mx-auto overflow-visible",
           isScrolled 
-            ? "w-[90%] max-w-4xl bg-[#FDFBF7]/90 backdrop-blur-xl shadow-[0_12px_40px_rgb(0,0,0,0.08)] border border-brand-950/10 rounded-[20px] px-6 py-2.5" 
-            : "w-[95%] max-w-7xl bg-transparent border-transparent rounded-[16px] px-8 py-3.5"
+            ? "w-[95%] md:w-[90%] max-w-4xl bg-[#FDFBF7]/90 backdrop-blur-xl shadow-[0_12px_40px_rgb(0,0,0,0.08)] border border-brand-950/10 rounded-[16px] md:rounded-[20px] px-4 md:px-6 py-2 md:py-2.5" 
+            : "w-full md:w-[95%] max-w-7xl bg-transparent border-transparent rounded-none md:rounded-[16px] px-4 md:px-8 py-2 md:py-3.5"
         )}
       >
         
         {/* Logo Lockup - Architectural Editorial Style */}
         <Link to="/" className="flex items-center group relative flex-1 shrink-0">
           {!logoError ? (
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3 md:gap-4">
               <img 
                 src="/gsp-logo.png" 
                 alt="GSP Constructions Logo" 
                 className={cn(
                   "w-auto transition-all duration-700 ease-[0.16,1,0.3,1] group-hover:scale-105",
-                  isScrolled ? "h-9" : "h-11"
+                  isScrolled ? "h-7 md:h-9" : "h-8 md:h-11"
                 )} 
                 onError={() => setLogoError(true)}
               />
@@ -131,11 +131,11 @@ export const Navbar = () => {
                 isScrolled ? "h-6" : "h-8"
               )}></div>
               
-              <div className="flex flex-col items-start justify-center hidden sm:flex transition-transform duration-500 group-hover:scale-[1.01] origin-left">
-                <span className="font-bold text-[18px] tracking-[0.25em] text-brand-950 leading-none mb-1.5 transition-colors duration-300">
+              <div className="flex flex-col items-start justify-center transition-transform duration-500 group-hover:scale-[1.01] origin-left">
+                <span className="font-bold text-[14px] md:text-[18px] tracking-[0.2em] md:tracking-[0.25em] text-brand-950 leading-none mb-1 transition-colors duration-300">
                   TEJ<span className="text-accent-500">A</span>SHWI
                 </span>
-                <span className="text-[8px] font-semibold tracking-[0.2em] text-brand-500 uppercase">
+                <span className="text-[6px] md:text-[8px] font-semibold tracking-[0.15em] md:tracking-[0.2em] text-brand-500 uppercase">
                   Asphalt & Constructions
                 </span>
               </div>

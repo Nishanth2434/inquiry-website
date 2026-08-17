@@ -136,28 +136,28 @@ export const Home = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-brand-950/90 via-transparent to-transparent z-10" />
         </div>
         
-        <div className="container-custom relative z-20 w-full pt-32 pb-20">
+        <div className="container-custom relative z-20 w-full pt-28 pb-16 lg:pt-32 lg:pb-20">
           <div className="max-w-4xl">
             <motion.div 
               initial="hidden" animate="visible" variants={staggerContainer}
             >
-              <motion.div variants={fadeInUp} className="inline-flex items-center gap-4 mb-8">
-                <div className="h-[2px] w-12 bg-accent-500" />
-                <span className="text-accent-500 font-bold tracking-[0.25em] uppercase text-sm">
+              <motion.div variants={fadeInUp} className="inline-flex items-center gap-3 lg:gap-4 mb-6 lg:mb-8">
+                <div className="h-[2px] w-8 lg:w-12 bg-accent-500" />
+                <span className="text-accent-500 font-bold tracking-[0.2em] lg:tracking-[0.25em] uppercase text-xs lg:text-sm">
                   Premium Infrastructure Solutions
                 </span>
               </motion.div>
               
-              <motion.h1 variants={fadeInUp} className="text-5xl md:text-7xl lg:text-[84px] font-bold text-white mb-8 leading-[1.05] tracking-tight">
+              <motion.h1 variants={fadeInUp} className="text-4xl md:text-6xl lg:text-[84px] font-bold text-white mb-6 lg:mb-8 leading-[1.1] lg:leading-[1.05] tracking-tight">
                 Building Roads.<br/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-100 to-brand-300">Connecting Progress.</span>
               </motion.h1>
 
-              <motion.p variants={fadeInUp} className="text-xl md:text-2xl text-brand-100/90 mb-14 max-w-2xl font-light leading-relaxed border-l-[3px] border-accent-500 pl-6">
+              <motion.p variants={fadeInUp} className="text-lg md:text-xl lg:text-2xl text-brand-100/90 mb-10 lg:mb-14 max-w-2xl font-light leading-relaxed border-l-[3px] border-accent-500 pl-4 lg:pl-6">
                 Delivering premium asphalt paving, structural road construction, and comprehensive infrastructure solutions engineered for durability and scale.
               </motion.p>
               
-              <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-6">
+              <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 lg:gap-6">
                 <Link to="/projects">
                   <button className="group relative overflow-hidden rounded-[8px] bg-accent-500 px-10 h-16 transition-all duration-500 hover:shadow-[0_8px_30px_rgba(217,119,6,0.3)] hover:-translate-y-0.5 flex items-center justify-center w-full sm:w-auto">
                     <span className="relative z-10 flex items-center gap-3 text-[15px] font-bold tracking-wider text-brand-950 uppercase transition-colors duration-500 group-hover:text-white">
@@ -181,7 +181,7 @@ export const Home = () => {
       </section>
 
       {/* SECTION 2 - COMPANY INTRODUCTION */}
-      <section className="py-32 bg-[#FDFBF7] relative z-20 overflow-hidden">
+      <section className="py-16 lg:py-32 bg-[#FDFBF7] relative z-20 overflow-hidden">
         <div className="container-custom max-w-7xl">
           <div className="flex flex-col lg:flex-row items-center relative">
             
@@ -214,9 +214,9 @@ export const Home = () => {
               whileInView="visible" 
               viewport={{ once: true, margin: "-100px" }} 
               variants={staggerContainer} 
-              className="w-full lg:w-[45%] lg:-ml-[5%] relative z-10 mt-12 lg:mt-0"
+              className="w-full lg:w-[45%] lg:-ml-[5%] relative z-10 mt-8 lg:mt-0"
             >
-              <div className="bg-[#FDFBF7] p-10 md:p-14 rounded-[20px] shadow-[0_30px_80px_rgb(0,0,0,0.08)] border border-brand-950/5">
+              <div className="bg-[#FDFBF7] p-8 md:p-14 rounded-[20px] shadow-[0_30px_80px_rgb(0,0,0,0.08)] border border-brand-950/5">
                 
                 {/* Section Label */}
                 <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } } }} className="flex items-center gap-4 mb-8">
@@ -362,7 +362,7 @@ export const Home = () => {
             </div>
 
             {/* Right: Image Presentation */}
-            <div className="w-full lg:w-[60%] h-[500px] lg:h-[700px] relative rounded-[28px] overflow-hidden shadow-[0_20px_60px_rgb(0,0,0,0.08)] bg-brand-100">
+            <div className="w-full lg:w-[60%] h-[350px] lg:h-[700px] relative rounded-[20px] lg:rounded-[28px] overflow-hidden shadow-[0_20px_60px_rgb(0,0,0,0.08)] bg-brand-100">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeService}
@@ -382,10 +382,10 @@ export const Home = () => {
       </section>
 
       {/* SECTION 4 - FEATURED PROJECTS */}
-      <section className="py-32 bg-[#FDFBF7]">
+      <section className="py-16 lg:py-32 bg-[#FDFBF7]">
         <div className="container-custom max-w-7xl">
           {/* Header */}
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-6 border-b border-brand-950/10 pb-8">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 lg:mb-20 gap-6 border-b border-brand-950/10 pb-8">
             <div>
               <div className="flex items-center gap-4 mb-4">
                 <span className="text-[12px] font-bold tracking-[0.2em] text-brand-400 uppercase">03</span>
@@ -406,7 +406,7 @@ export const Home = () => {
           </div>
 
           {/* Project Showcase Layout */}
-          <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
+          <div className="flex flex-col-reverse lg:flex-row gap-8 lg:gap-16 items-center">
             
             {/* Left: Project Navigation */}
             <div className="w-full lg:w-[35%] flex flex-col gap-2 relative z-10">
@@ -524,7 +524,7 @@ export const Home = () => {
       </section>
 
       {/* SECTION 6 - EQUIPMENT */}
-      <section className="py-24 bg-brand-50 overflow-hidden">
+      <section className="py-16 lg:py-24 bg-brand-50 overflow-hidden">
         <div className="container-custom mb-12">
           <h2 className="text-4xl font-bold text-brand-950">Our Heavy Machinery</h2>
         </div>
@@ -598,10 +598,10 @@ export const Home = () => {
       </section>
 
       {/* SECTION 9 - TESTIMONIALS */}
-      <section className="section-padding bg-white">
+      <section className="py-16 lg:py-32 bg-white">
         <div className="container-custom">
-          <h2 className="text-4xl md:text-5xl font-bold text-brand-950 text-center mb-16">Client Testimonials</h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <h2 className="text-4xl md:text-5xl font-bold text-brand-950 text-center mb-12 lg:mb-16 tracking-tight">Client Testimonials</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
             {[
               {
                 text: "Tejashwi Constructions delivered exceptional quality on the Mysore Ring Road resurfacing. Their team's dedication to timelines and material quality is unmatched in the region.",
@@ -643,24 +643,23 @@ export const Home = () => {
       </section>
 
       {/* SECTION 10 - CTA */}
-      <section className="relative py-32 bg-brand-950 overflow-hidden">
+      <section className="py-16 lg:py-24 bg-brand-950 text-[#FDFBF7] relative overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img src={ctaBg} alt="CTA Background" className="w-full h-full object-cover opacity-30" />
-          <div className="absolute inset-0 bg-brand-950/80" />
+          <img src={ctaBg} alt="Construction Site" className="w-full h-full object-cover opacity-20 mix-blend-luminosity" />
         </div>
         <div className="container-custom relative z-10 text-center max-w-4xl mx-auto">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}>
-            <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">Have a Road Construction Project?</h2>
-            <p className="text-xl md:text-2xl text-brand-200 mb-12 font-light">Let's discuss your next infrastructure project and build something lasting.</p>
-            <div className="flex flex-col sm:flex-row justify-center gap-6">
-              <Button size="lg" className="bg-brand-500 hover:bg-brand-400 text-white rounded-none h-14 px-10 text-lg">
-                Get a Quote
-              </Button>
-              <Button variant="outline" size="lg" className="text-white border-white hover:bg-white hover:text-brand-950 rounded-none h-14 px-10 text-lg">
-                Contact Us
-              </Button>
-            </div>
-          </motion.div>
+          <h2 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight text-white">Ready to Build?</h2>
+          <p className="text-lg md:text-xl text-brand-100/80 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
+            Partner with TEJASHWI for your next major infrastructure or paving project. We bring the machinery, the expertise, and the legacy of excellence.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4 lg:gap-6">
+            <Link 
+              to="/contact" 
+              className="inline-flex items-center justify-center gap-3 bg-accent-500 text-brand-950 px-8 py-4 rounded-xl font-bold tracking-widest uppercase hover:bg-accent-400 transition-colors shadow-[0_10px_30px_rgba(217,119,6,0.3)] hover:-translate-y-1 transform duration-300 w-full sm:w-auto"
+            >
+              Start Your Project
+            </Link>
+          </div>
         </div>
       </section>
       
